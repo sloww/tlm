@@ -1,0 +1,6 @@
+{% for gong_ju  in gong_ju_list %}
+
+{{forloop.counter}}, {{gong_ju.gong_ju_set.gong_qu.che_jian.name}}{{gong_ju.gong_ju_set.gong_qu.name}},
+{{gong_ju.gong_ju_set.gjzl.name}}, {{gong_ju.No}} 
+<br>
+{% endfor %}
