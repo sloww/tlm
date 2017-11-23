@@ -133,6 +133,19 @@ class GongJu(models.Model):
         default = 1,
         verbose_name = '序号',
         )
+
+    url = models.CharField(
+        max_length = 200,
+        default = '',
+        verbose_name = '查询地址',
+        )
+
+    no = models.CharField(
+        max_length = 200,
+        default = '',
+        verbose_name = '唯一编号',
+        )
+    
     
     has_print = models.BooleanField(
         default = True,
@@ -148,8 +161,8 @@ class GongJu(models.Model):
     def GongJu(self):
         return self.gong_ju_set.gjzl.name
 
-    def No(self):
-        return  '%s%s%s%s' % (
+    def NoSet(self):
+        return '%s%s%s%s' % (
             self.gong_ju_set.gong_qu.che_jian.num,
             self.gong_ju_set.gong_qu.num, 
             self.gong_ju_set.gjzl.num.upper(),

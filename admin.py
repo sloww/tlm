@@ -6,7 +6,7 @@ from searchadmin.admin import SelectModelAdmin
 
 class GongJuAdmin(SelectModelAdmin):
     search_fields = ('gong_ju_set__gjzl__name','gong_ju_set__gong_qu__name','gong_ju_set__gong_qu__che_jian__name',)
-    list_display = ('GongJu','CheJian','GongQu','No',)
+    list_display = ('GongJu','CheJian','GongQu','no',)
 
     
 admin_site.register(GongQu)

@@ -1,0 +1,74 @@
+{% extends 'tl/base.html' %}
+{% block body %}
+
+<div class="page">
+<div class="page__bd page__bd_spacing">
+
+        <div class="weui-flex__item">
+    <div   class="weui-tab">
+        <div class="weui-navbar">
+            <div class="weui-navbar__item weui-bar__item_on">
+                 {{gong_ju.CheJian}}
+            </div>
+        </div>
+    </div>
+</div>
+        <div class="weui-flex__item" style="padding-top:25px;">
+        <img style="max-width:100%;"  src="http://www.gaxf.cn/wordpress/wp-content/uploads/2015/12/2南京南站1-公共.jpg"/>
+        </div>
+            <div  style="padding-top:25px;padding-left:20px;padding-right:20px" >
+
+                <div class="weui-flex">
+                    <div class="weui-flex__item">工具名称：{{gong_ju.GongJu}} </div>
+                </div>
+
+                <div class="weui-flex">
+                    <div class="weui-flex__item">唯一编号：{{gong_ju.no}} </div>
+                </div>
+                <div class="weui-flex">
+                    <div class="weui-flex__item">车间工区：{{gong_ju.CheJian}} {{gong_ju.GongQu}} </div>
+                </div>
+        <div class="weui-flex" style="padding-top:15px" >
+            <div class="weui-flex__item" >工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 具的注意事项 </div>
+        </div>
+</div>
+    <div style="padding-top:20px">
+
+        <center>
+            <h2>
+            <div>记录</div>
+            </h2>
+        </center>
+
+         <form  method="post" enctype="multipart/form-data">
+         {% csrf_token %}
+
+             <div class="weui-cells weui-cells_form">
+                 <div class="weui-cell">
+                     <div class="weui-cell__bd">
+                         <textarea class="weui-textarea" placeholder="反馈内容" rows="7" name="feed_back"></textarea>
+                     </div>
+                 </div>
+             </div>
+
+             <div class="weui-cell">
+                 <div class="weui-cell__bd">
+                         <input name="img" class="weui-input" type="file" accept="image/*"  placeholder="请选择图片"></input>
+                    </div>
+             </div>
+
+         <div class="weui-cell">
+             <div class="weui-cell__bd">
+                 <input name="contact" class="weui-input" type="text" placeholder="联系方式 " />
+             </div>
+
+         </div>
+            <div class="weui-btn-area" style="padding-top:20px">
+                <input type="submit" value="确认" class="weui-btn weui-btn_primary">
+</div>
+        </form>
+    </div>
+
+
+</div>
+{% endblock %}
