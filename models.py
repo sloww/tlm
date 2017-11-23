@@ -144,6 +144,7 @@ class GongJu(models.Model):
         max_length = 200,
         default = '',
         verbose_name = '唯一编号',
+        unique = True,
         )
     
     

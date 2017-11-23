@@ -27,17 +27,21 @@ def get_gongju(request, no):
 @staff_member_required
 def rebuild(request, che_jian_num):
     try:
-        gjs =  GongJu.objects.filter(gong_ju_set__gong_qu__che_jian__num = che_jian_num)
-        if gjs:
-            gjs.delete()
+        #gjs =  GongJu.objects.filter(gong_ju_set__gong_qu__che_jian__num = che_jian_num)
+        #if gjs:
+        #    gjs.delete()
         gong_ju_set_list = GongJuSet.objects.filter(gong_qu__che_jian__num = che_jian_num)
         if gong_ju_set_list:
             for gong_ju_set in gong_ju_set_list:
                 for i in range(1,gong_ju_set.count+1):
                     gj = GongJu(gong_ju_set = gong_ju_set,num=i)
                     gj.no = gj.NoSet()
+                    tmpno = gj.NoSet()
                     gj.url = settings.GONGJUURLPRE+ gj.no + '/'
-                    gj.save()
+                    if GongJu.objects.filter(no = tmpno).exists():
+                        print(gj.no)   
+                    else:
+                        gj.save()
 
         return HttpResponse("finished")
     except:
