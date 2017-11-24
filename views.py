@@ -1,9 +1,21 @@
-from django.shortcuts import render
 from .models import CheJian, GongQu,GongJuZhongLei, GongJu,GongJuSet,Post
-from django.contrib.admin.views.decorators import staff_member_required
+
 from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.views.decorators import csrf
+from django.core.files.storage import FileSystemStorage
+import uuid
+from django.contrib.admin.views.decorators import staff_member_required
+from django.http import StreamingHttpResponse
+import time
+import os
+import shutil
+import oss2
 from django.conf import settings
+from django.utils.timezone import utc
 from datetime import datetime
+
+
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -25,11 +37,8 @@ def get_gongju_list(request, che_jian_num, gong_qu_num):
 
 def post(request, id):
     try:
-        print('1231')
         lfb = Post.objects.get(id=id)
-        print(lfb.feed_back)
         context = {'lfb':lfb,}
-        print(context)
         return render(request, 'tl/post.html', context)
     except:
         return HttpResponse("not exist")
@@ -55,17 +64,14 @@ def get_gongju(request, no):
                             settings.ACCESS_KEY_SECRET), settings.ENDPOINT, settings.BUCKET_NAME)
                         myfile = request.FILES['img']
                         t0 = datetime(1, 1, 1)
-                        now = datetime.now()
-                        seconds = (now - t0).total_seconds()
-                        new_name = qr_label.qrcode + str(seconds) + os.path.splitext(myfile.name)[1]
+                        now = datetime.utcnow()
+                        new_name = no + str(seconds) + os.path.splitext(myfile.name)[1]
                         bucket.put_object(new_name, myfile)
                         lfb.upload_img_url = settings.IMGPREURL + new_name
                 except:
                     pass
                 lfb.save()
-        print('ok')
         lfbs = Post.objects.filter(gong_ju = gong_ju).filter(is_show = True)
-        print(lfbs) 
         context = {'gong_ju':gong_ju,'lfbs':lfbs,}
         return render(request, 'tl/get-gongju.html', context)
     except:
