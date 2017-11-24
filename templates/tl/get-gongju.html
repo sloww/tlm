@@ -11,41 +11,37 @@
     <div   class="weui-tab">
         <div class="weui-navbar">
             <div class="weui-navbar__item weui-bar__item_on">
-                 {{gong_ju.GongQu}}
+                扫描结果
             </div>
         </div>
     </div>
 </div>
-        <div class="weui-flex__item" style="padding-top:25px;">
-        <img style="max-width:100%;"  src="http://www.gaxf.cn/wordpress/wp-content/uploads/2015/12/2南京南站1-公共.jpg"/>
-        </div>
-            <div  style="padding-top:25px;padding-left:20px;padding-right:20px" >
+            <div  style="padding-top:65px;padding-left:20px;padding-right:20px" >
 
                 <div class="weui-flex">
-                    <div class="weui-flex__item">工具名称：{{gong_ju.GongJu}} </div>
+                    <div class="weui-flex__item">工具：{{gong_ju.GongJu}} </div>
                 </div>
 
                 <div class="weui-flex">
-                    <div class="weui-flex__item">唯一编号：{{gong_ju.no}} </div>
+                    <div class="weui-flex__item">编号：{{gong_ju.no}} </div>
                 </div>
                 <div class="weui-flex">
-                    <div class="weui-flex__item">车间工区：{{gong_ju.CheJian}} {{gong_ju.GongQu}} </div>
+                    <div class="weui-flex__item">工区： {{gong_ju.GongQu}} </div>
                 </div>
-        <div class="weui-flex" style="padding-top:15px" >
-            <div class="weui-flex__item" >工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 工具的注意事项 具的注意事项 </div>
-        </div>
+                <div class="weui-flex">
+                    <div class="weui-flex__item">车间：{{gong_ju.CheJian}} </div>
+                </div>
 </div>
     <div style="padding-top:20px">
 
         <center>
-            <h2>
+            <h3>
             <div>记录</div>
-            </h2>
+            </h3>
         </center>
 
          <form  method="post" enctype="multipart/form-data">
          {% csrf_token %}
-
              <div class="weui-cells weui-cells_form">
                  <div class="weui-cell">
                      <div class="weui-cell__bd">
