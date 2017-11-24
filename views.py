@@ -65,6 +65,7 @@ def get_gongju(request, no):
                         myfile = request.FILES['img']
                         t0 = datetime(1, 1, 1)
                         now = datetime.utcnow()
+                        seconds = (now - t0).total_seconds()* 100000
                         new_name = no + str(seconds) + os.path.splitext(myfile.name)[1]
                         bucket.put_object(new_name, myfile)
                         lfb.upload_img_url = settings.IMGPREURL + new_name
