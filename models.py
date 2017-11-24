@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 
 class CheJian(models.Model):
@@ -179,4 +180,55 @@ class GongJu(models.Model):
             self.gong_ju_set,
             '%02d' % self.num,
             ) 
+
+class Post(models.Model):
+    
+    gong_ju = models.ForeignKey(
+        'GongJu',
+        on_delete = models.CASCADE,
+        related_name = 'gongju_post',
+        )  
+
+    feed_back = models.TextField(
+        verbose_name = '反馈',
+        blank = True,
+        )
+
+    contact = models.CharField(
+        verbose_name = '反馈',
+        max_length = 200,
+        blank = True,
+        )
+
+    upload_img_url = models.URLField(
+        verbose_name = '图片',
+        )
+
+    is_show = models.BooleanField(
+        verbose_name = '是否显示',
+        default = True,
+        )
+
+    date_time = models.DateTimeField(
+        verbose_name = '时间',
+        default=datetime.now(),
+        blank=True
+        )
+
+
+    ip = models.GenericIPAddressField(
+        verbose_name = 'IP',
+        default = '0.0.0.0',
+        )
+
+    class Meta:
+        verbose_name = '反馈'
+        verbose_name_plural = '6.反馈'
+
+    def __str__(self):
+        return  '{} {}'.format( 
+            self.ip,
+            self.date_time,
+            ) 
+
 
