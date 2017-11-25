@@ -78,7 +78,15 @@ def get_gongju(request, no):
     except:
         return HttpResponse("not exist")
         
-        
+def delete_post(request, no, id):
+    print(no)
+    print(id)
+    if Post.objects.filter(id = id):
+        p = Post.objects.filter(id = id)[0]
+        p.is_show = False
+        p.save()
+    return get_gongju(request,no)         
+     
 
 @staff_member_required
 def rebuild(request, che_jian_num):

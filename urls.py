@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'^(?P<che_jian_num>\d+)/(?P<gong_qu_num>\d+)/$', views.get_gongju_list, name='get_gongju_list'),
     url(r'^(?P<no>\w+)/$', views.get_gongju, name='get_gongju'),
     url(r'^post/(?P<id>\w+)/$', views.post, name='post'),
+    url(r'^delete/(?P<no>\w+)/(?P<id>\w+)/$', views.delete_post, name='delete_post'),
 
 ]
